@@ -84,7 +84,7 @@ db.query('INSERT INTO food (id, name) VALUES (NULL, "Tea")',
 //      - Em caso de sucesso do INSERT, colocar uma mensagem feliz
 //      - Em caso de erro do INSERT, colocar mensagem vermelhinha
 
-router.delete('/:id', function(req, res) {
+router.delete('/person/:id', function(req, res) {
   var id = db.escape(req.params.id);
   var query = 'DELETE FROM person WHERE id = ' + id;
     db.query(query, function(err, result) {
