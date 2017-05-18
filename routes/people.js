@@ -66,15 +66,14 @@ router.get('/new/', function(req, res) {
 //      - Em caso de sucesso do INSERT, colocar uma mensagem feliz
 //      - Em caso de erro do INSERT, colocar mensagem vermelhinha
 
-/*
-db.query('INSERT INTO food (id, name) VALUES (NULL, "Tea")',
-  function(err, result) {
-    console.log('Number of food added: ' +
-                 result.affectedRows +
-                 ' with id = ' + result.insertId);
-  }
-);
-*/
+router.post('/', function(req, res) {
+  var name = db.escape(req.body.name);
+  var query = 'INSERT INTO person (id, name, alive, eatenBy) VALUES (NULL, ' + name + ', 1, NULL)';
+  db.query(query, function(err, result) {
+    if (err)  { res.send(401, 'Impossível inserir essa Pessoa'); }
+    else      { res.redirect('/'); }
+  });
+});
 
 /* DELETE uma pessoa */
 // Exercício 2: IMPLEMENTAR AQUI
